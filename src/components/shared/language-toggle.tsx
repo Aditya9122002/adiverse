@@ -5,7 +5,7 @@ import { useLang } from "@/components/providers/language-provider";
 export function LanguageToggle() {
   const { lang, setLang } = useLang();
   return (
-    <div className="inline-flex rounded-full border border-foreground/20 p-1 text-sm">
+    <div className="inline-flex rounded-full border-[3px] border-ink bg-white p-1 text-sm">
       {(["en", "hi"] as const).map((l) => (
         <button
           key={l}

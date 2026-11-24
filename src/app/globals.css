@@ -129,28 +129,173 @@
   }
 }
 
-/* ===== Adiverse design tokens ===== */
+/* ===== Adiverse design tokens v2 (neo-brutalist) ===== */
 :root {
-  --background: #fbf6ec;        /* cream */
-  --foreground: #1b1b3a;        /* indigo ink */
-  --primary: #f5a524;           /* marigold: buttons and shapes only */
-  --primary-foreground: #1b1b3a;
+  --ink: #1b1b3a;
+  --cream: #fbf6ec;
+  --gold: #f5a524;
+  --chili: #e4452e;
+  --leaf: #25a869;
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --primary: var(--gold);
+  --primary-foreground: var(--ink);
   --radius: 1.25rem;
 }
 
 @theme inline {
-  --color-chili: #e4452e;       /* "before" / highlights */
-  --color-leaf: #25a869;        /* "after" / success */
-  --font-display: var(--font-display), serif;
-  --font-sans: var(--font-sans), var(--font-hindi), system-ui, sans-serif;
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-chili: var(--chili);
+  --color-leaf: var(--leaf);
+  --font-display: var(--font-bricolage), var(--font-hindi), sans-serif;
+  --font-sans: var(--font-inter), var(--font-hindi), system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-inter), var(--font-hindi), system-ui, sans-serif;
 }
 
 h1, h2, h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-bricolage), var(--font-hindi), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+@layer components {
+  /* Card with thick outline and hard offset shadow */
+  .brut-card {
+    background: #fff;
+    border: 3px solid var(--ink);
+    border-radius: 1.25rem;
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+
+  /* Button that "presses" into its shadow */
+  .brut-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-weight: 700;
+    padding: 0.8rem 1.5rem;
+    border: 3px solid var(--ink);
+    border-radius: 999px;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .brut-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .brut-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+
+  /* Yellow marker swipe behind a word */
+  .marker {
+    background-image: linear-gradient(transparent 58%, var(--gold) 58%);
+    padding: 0 0.15em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Tilted sticker label */
+  .sticker {
+    display: inline-block;
+    font-weight: 800;
+    padding: 0.2rem 0.7rem;
+    border: 3px solid var(--ink);
+    border-radius: 0.6rem;
+    box-shadow: 3px 3px 0 var(--ink);
+    transform: rotate(-3deg);
+  }
+
+  /* Faint dot-grid background */
+  .dot-grid {
+    background-image: radial-gradient(
+      color-mix(in srgb, var(--ink) 18%, transparent) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 22px 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brut-btn {
+    transition: none;
+  }
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ===== Motion v1 ===== */
+.svg-anim {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes bob-sm {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+@keyframes wave {
+  0%, 100% { transform: rotate(-8deg); }
+  25% { transform: rotate(20deg); }
+  50% { transform: rotate(-8deg); }
+  75% { transform: rotate(20deg); }
+}
+@keyframes blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.1); }
+}
+@keyframes pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+.bob { animation: bob 5s ease-in-out infinite; }
+.bob-2 { animation: bob 6s ease-in-out -2s infinite; }
+.bob-sm { animation: bob-sm 4s ease-in-out infinite; }
+.wiggle { animation: wiggle 1.6s ease-in-out infinite; }
+.wave-arm { transform-origin: 158px 156px; animation: wave 2.6s ease-in-out infinite; }
+.blink { animation: blink 5s infinite; }
+.pop { animation: pop 1.6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bob, .bob-2, .bob-sm, .wiggle, .wave-arm, .blink, .pop {
+    animation: none;
+  }
 }
