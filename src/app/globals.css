@@ -299,3 +299,22 @@ h1, h2, h3 {
     animation: none;
   }
 }
+
+.wave-hand {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave 2.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wave-hand {
+    animation: none;
+  }
+}
+
+.dot-grid-light {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--cream) 14%, transparent) 1.5px,
+    transparent 1.5px
+  );
+  background-size: 22px 22px;
+}

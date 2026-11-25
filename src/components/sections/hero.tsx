@@ -1,57 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useLang } from "@/components/providers/language-provider";
-import { ShopScene } from "@/components/sections/shop-scene";
 import { Mascot } from "@/components/sections/mascot";
+import { building } from "@/data/building";
 
-// Types text letter by letter. Splits by grapheme so Hindi stays intact.
-function useTypewriter(text: string, speed = 38) {
-  const reduce = useReducedMotion();
-  const [out, setOut] = useState("");
+// Flip to true after you add public/adi.png
+const PORTRAIT = "/adi.png";
+const HAS_PORTRAIT = true;
 
-  useEffect(() => {
-    if (reduce) {
-      setOut(text);
-      return;
-    }
-    const parts: string[] =
-      typeof Intl !== "undefined" && "Segmenter" in Intl
-        ? Array.from(
-            new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(text),
-            (s) => s.segment
-          )
-        : Array.from(text);
-
-    setOut("");
-    let i = 0;
-    const id = setInterval(() => {
-      i++;
-      setOut(parts.slice(0, i).join(""));
-      if (i >= parts.length) clearInterval(id);
-    }, speed);
-    return () => clearInterval(id);
-  }, [text, speed, reduce]);
-
-  return out;
-}
-
-function Dots({ label }: { label: string }) {
-  return (
-    <div className="flex items-center gap-1.5 border-b-[3px] border-ink bg-cream px-3 py-2">
-      <span className="h-2.5 w-2.5 rounded-full border-2 border-ink bg-chili" />
-      <span className="h-2.5 w-2.5 rounded-full border-2 border-ink bg-gold" />
-      <span className="h-2.5 w-2.5 rounded-full border-2 border-ink bg-leaf" />
-      <span className="ml-2 truncate text-xs font-bold opacity-70">{label}</span>
-    </div>
-  );
-}
+const CHIPS = [
+  { label: "LLMs", cls: "left-[0%] top-[12%] -rotate-3 bob" },
+  { label: "RAG", cls: "left-[-2%] top-[36%] rotate-2 bob-2" },
+  { label: "FastAPI", cls: "left-[4%] top-[58%] -rotate-2 bob" },
+  { label: "Open Source", cls: "right-[0%] top-[16%] rotate-3 bob-2" },
+];
 
 export function Hero() {
   const { t } = useLang();
   const reduce = useReducedMotion();
-  const typed = useTypewriter(t.bubble);
 
   const rise = (delay: number) =>
     reduce
@@ -67,7 +35,7 @@ export function Hero() {
       id="top"
       className="dot-grid overflow-hidden px-4 pb-20 pt-32 md:px-6 md:pt-40"
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
         {/* Text side */}
         <div>
           <motion.div
@@ -79,6 +47,12 @@ export function Hero() {
           </motion.div>
 
           <motion.h1 {...rise(0.08)} className="mt-6 text-5xl sm:text-6xl lg:text-7xl">
+            {t.heroHi} <span className="marker">{t.heroName}</span>
+            {t.heroHiEnd}{" "}
+            <span className="wave-hand" aria-hidden="true">
+              👋
+            </span>
+            <br />
             {t.heroA} <span className="marker">{t.heroB}</span>
           </motion.h1>
 
@@ -87,11 +61,11 @@ export function Hero() {
           </motion.p>
 
           <motion.div {...rise(0.24)} className="mt-8 flex flex-wrap gap-3">
-            <a href="#contact" className="brut-btn">
-              {t.cta} →
+            <a href="#work" className="brut-btn">
+              {t.ctaWork} →
             </a>
-            <a href="#work" className="brut-btn !bg-white">
-              {t.ctaWork}
+            <a href="#contact" className="brut-btn !bg-white">
+              {t.cta}
             </a>
           </motion.div>
 
@@ -111,79 +85,94 @@ export function Hero() {
         </div>
 
         {/* Visual side */}
-        <div className="relative mx-auto aspect-[4/4.6] w-full max-w-md lg:max-w-none">
-          {/* BEFORE card */}
-          <div className="bob absolute left-[1%] top-[3%] w-[66%]">
-            <motion.div
-              initial={reduce ? false : { opacity: 0, y: 40, rotate: -8 }}
-              animate={{ opacity: 1, y: 0, rotate: -3 }}
-              whileHover={reduce ? undefined : { rotate: 0, scale: 1.02 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 160, damping: 18 }}
-              className="brut-card overflow-hidden"
-            >
-              <Dots label="yourshop.in (not found)" />
-              <ShopScene state="before" />
-            </motion.div>
-          </div>
-
-          {/* AFTER card */}
-          <div className="bob-2 absolute right-0 top-[24%] w-[66%]">
-            <motion.div
-              initial={reduce ? false : { opacity: 0, y: 40, rotate: 8 }}
-              animate={{ opacity: 1, y: 0, rotate: 3 }}
-              whileHover={reduce ? undefined : { rotate: 0, scale: 1.02 }}
-              transition={{ delay: 0.35, type: "spring", stiffness: 160, damping: 18 }}
-              className="brut-card overflow-hidden"
-            >
-              <Dots label="yourshop.in" />
-              <ShopScene state="after" />
-            </motion.div>
-          </div>
-
-          {/* stickers */}
-          <span className="sticker absolute left-0 top-[-1%] z-10 bg-chili text-xs text-white sm:text-sm">
-            {t.before}
-          </span>
-          <span className="sticker wiggle absolute right-[2%] top-[6%] z-10 bg-gold text-xs sm:text-sm">
-            {t.missed}
-          </span>
-          <span className="sticker absolute right-[3%] top-[21%] z-10 rotate-3 bg-leaf text-xs text-white sm:text-sm">
-            {t.after}
-          </span>
-          <motion.span
-            animate={reduce ? undefined : { scale: [1, 1.08, 1] }}
-            transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
-            className="sticker absolute right-[1%] top-[63%] z-10 bg-leaf text-xs text-white sm:text-sm"
+        <div className="relative mx-auto aspect-square w-full max-w-md lg:max-w-none">
+          {/* marigold blob */}
+          <svg
+            viewBox="0 0 400 400"
+            aria-hidden="true"
+            className="absolute inset-[4%] h-[92%] w-[92%]"
           >
-            {t.newOrder}
-          </motion.span>
+            <path
+              d="M310 60C380 120 400 230 340 310C280 390 150 400 80 330C10 260 20 130 100 70C170 10 250 10 310 60Z"
+              fill="#F5A524"
+            />
+          </svg>
 
-          {/* mascot */}
+          {/* sparkle doodles */}
+          <svg
+            viewBox="0 0 60 60"
+            aria-hidden="true"
+            className="wiggle svg-anim absolute right-[22%] top-[0%] w-12"
+          >
+            <path d="M30 4v14M8 20l11 8M52 20l-11 8" stroke="#1B1B3A" strokeWidth="4" strokeLinecap="round" />
+          </svg>
+
+          {/* portrait */}
           <motion.div
-            initial={reduce ? false : { opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, type: "spring", stiffness: 140, damping: 16 }}
-            className="absolute bottom-0 left-[-2%] z-20 w-[36%]"
+            initial={reduce ? false : { opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 140, damping: 16 }}
+            className="absolute inset-x-[8%] bottom-0 top-[6%] z-10 flex items-end justify-center"
           >
-            <Mascot />
+            {HAS_PORTRAIT ? (
+              <Image
+                src={PORTRAIT}
+                alt="Illustrated portrait of Adi, the developer behind Adiverse"
+                width={900}
+                height={900}
+                priority
+                sizes="(min-width: 1024px) 480px, 90vw"
+                className="h-full w-auto object-contain"
+              />
+            ) : (
+              <div className="w-3/5">
+                <Mascot />
+              </div>
+            )}
           </motion.div>
 
-          {/* speech bubble */}
+          {/* tech chips */}
+          {CHIPS.map((c, i) => (
+            <motion.span
+              key={c.label}
+              initial={reduce ? false : { opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 + i * 0.12, type: "spring", stiffness: 220, damping: 14 }}
+              className={`brut-card absolute z-20 !rounded-xl bg-white px-3 py-1.5 font-display text-sm font-extrabold sm:text-base ${c.cls}`}
+            >
+              {c.label}
+            </motion.span>
+          ))}
+
+          {/* currently building */}
           <motion.div
-            initial={reduce ? false : { opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1, type: "spring", stiffness: 200, damping: 16 }}
-            className="brut-card absolute bottom-[3%] right-0 z-20 w-[60%] bg-white p-3 sm:p-4"
+            initial={reduce ? false : { opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, type: "spring", stiffness: 160, damping: 16 }}
+            className="brut-card absolute bottom-[2%] right-0 z-20 w-[56%] -rotate-2 bg-white"
           >
-            <span
-              aria-hidden="true"
-              className="absolute -left-[11px] bottom-5 h-4 w-4 rotate-45 border-b-[3px] border-l-[3px] border-ink bg-white"
-            />
-            <p className="font-display text-xs font-extrabold text-chili">Adi</p>
-            <p className="sr-only">{t.bubble}</p>
-            <p aria-hidden="true" className="min-h-[2.8em] text-xs font-bold leading-snug sm:text-sm">
-              {typed}
-            </p>
+            <div className="flex items-center gap-1.5 border-b-[3px] border-ink px-3 py-2">
+              <span className="h-2.5 w-2.5 rounded-full border-2 border-ink bg-chili" />
+              <span className="h-2.5 w-2.5 rounded-full border-2 border-ink bg-gold" />
+              <span className="h-2.5 w-2.5 rounded-full border-2 border-ink bg-leaf" />
+              <span className="ml-1 truncate text-[11px] font-extrabold sm:text-xs">
+                {t.buildTitle}
+              </span>
+            </div>
+            <ul className="space-y-1.5 p-3">
+              {building.map((b) => (
+                <li key={b.name} className="flex items-center justify-between gap-2 text-xs font-bold sm:text-sm">
+                  {b.name}
+                  <span
+                    className={`rounded-full border-2 border-ink px-2 py-0.5 text-[10px] font-extrabold sm:text-xs ${
+                      b.status === "live" ? "bg-leaf text-white" : "bg-gold"
+                    }`}
+                  >
+                    {b.status === "live" ? t.live : t.building}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </motion.div>
         </div>
       </div>

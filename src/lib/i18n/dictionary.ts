@@ -46,6 +46,30 @@ export type Dictionary = {
   faqTitleA: string;
   faqTitleB: string;
   faq: { q: string; a: string }[];
+  heroHi: string;
+  heroName: string;
+  heroHiEnd: string;
+  buildTitle: string;
+  live: string;
+  building: string;
+  contactLabel: string;
+  contactTitleA: string;
+  contactTitleB: string;
+  contactSub: string;
+  fName: string;
+  fNeed: string;
+  needs: string[];
+  fMsg: string;
+  fMsgHint: string;
+  fSend: string;
+  or: string;
+  waBtn: string;
+  mailBtn: string;
+  soonContact: string;
+  footerTag: string;
+  footerLinks: string;
+  footerTouch: string;
+  footerRights: string;
 };
 
 export const dictionary: Record<Lang, Dictionary> = {
@@ -55,9 +79,6 @@ export const dictionary: Record<Lang, Dictionary> = {
     navProcess: "How it works",
     navFaq: "FAQ",
     navCta: "Get a quote",
-    heroBadge: "Now booking local shops",
-    heroA: "Your dukaan, now",
-    heroB: "online.",
     heroSub:
       "Websites, WhatsApp ordering and AI chatbots for local shops. Built fast, explained in plain words.",
     cta: "Get a free quote",
@@ -129,6 +150,34 @@ export const dictionary: Record<Lang, Dictionary> = {
       { q: "Who owns the website or chatbot?", a: "You do. Domain, code and accounts are set up in your name." },
       { q: "Can you build something with AI for my business?", a: "Yes. For example, a chatbot that answers customer questions or takes orders on WhatsApp. I can also build custom AI tools for your team." },
     ],
+    heroHi: "Hey, I'm",
+    heroName: "Adi",
+    heroHiEnd: ".",
+    heroBadge: "AI Engineer · Builder · Product Thinker",
+    heroA: "I build AI and websites that",
+    heroB: "solve real problems.",
+    buildTitle: "Currently building",
+    live: "Live",
+    building: "Building",
+
+    contactLabel: "LET'S TALK",
+    contactTitleA: "Tell me about your ",
+    contactTitleB: "project.",
+    contactSub: "A few lines are enough. I'll reply with a free quote within 24 hours.",
+    fName: "Your name",
+    fNeed: "What do you need?",
+    needs: ["A website", "An AI chatbot", "Automation", "Not sure yet"],
+    fMsg: "About your project",
+    fMsgHint: "What do you do, and what would you like built?",
+    fSend: "Send on WhatsApp →",
+    or: "or",
+    waBtn: "Chat on WhatsApp",
+    mailBtn: "Send an email",
+    soonContact: "Contact details coming soon",
+    footerTag: "Websites and AI that work for you.",
+    footerLinks: "Explore",
+    footerTouch: "Get in touch",
+    footerRights: "All rights reserved.",
   },
   hi: {
     navServices: "सेवाएँ",
@@ -136,9 +185,6 @@ export const dictionary: Record<Lang, Dictionary> = {
     navProcess: "कैसे होता है",
     navFaq: "सवाल-जवाब",
     navCta: "कोट पाएँ",
-    heroBadge: "लोकल दुकानों के लिए बुकिंग चालू",
-    heroA: "आपकी दुकान, अब",
-    heroB: "ऑनलाइन।",
     heroSub:
       "लोकल दुकानों के लिए वेबसाइट, व्हाट्सऐप ऑर्डर और AI चैटबॉट। जल्दी बनता है, आसान भाषा में समझाया जाता है।",
     cta: "फ्री कोट पाएँ",
@@ -212,7 +258,34 @@ export const dictionary: Record<Lang, Dictionary> = {
       { q: "क्या आप मेरे बिज़नेस के लिए AI बना सकते हैं?", a: "हाँ। जैसे ऐसा चैटबॉट जो ग्राहकों के सवालों के जवाब दे या व्हाट्सऐप पर ऑर्डर ले। टीम के लिए कस्टम AI टूल भी बना सकता हूँ।" },
     ],
 
-    
+    heroHi: "नमस्ते, मैं",
+    heroName: "आदि",
+    heroHiEnd: " हूँ।",
+    heroBadge: "AI इंजीनियर · बिल्डर · प्रोडक्ट थिंकर",
+    heroA: "मैं AI और वेबसाइट बनाता हूँ जो",
+    heroB: "असली समस्याएँ सुलझाएँ।",
+    buildTitle: "अभी बना रहा हूँ",
+    live: "लाइव",
+    building: "बन रहा है",
+
+    contactLabel: "बात करें",
+    contactTitleA: "अपने ",
+    contactTitleB: "प्रोजेक्ट के बारे में बताइए।",
+    contactSub: "कुछ लाइनें काफ़ी हैं। 24 घंटे में फ्री कोट के साथ जवाब दूँगा।",
+    fName: "आपका नाम",
+    fNeed: "आपको क्या चाहिए?",
+    needs: ["वेबसाइट", "AI चैटबॉट", "ऑटोमेशन", "अभी पक्का नहीं"],
+    fMsg: "अपने प्रोजेक्ट के बारे में",
+    fMsgHint: "आप क्या करते हैं और क्या बनवाना चाहते हैं?",
+    fSend: "व्हाट्सऐप पर भेजें →",
+    or: "या",
+    waBtn: "व्हाट्सऐप पर चैट करें",
+    mailBtn: "ईमेल भेजें",
+    soonContact: "संपर्क की जानकारी जल्द आ रही है",
+    footerTag: "वेबसाइट और AI जो आपके लिए काम करें।",
+    footerLinks: "देखें",
+    footerTouch: "संपर्क करें",
+    footerRights: "सर्वाधिकार सुरक्षित।",
     
   },
   
