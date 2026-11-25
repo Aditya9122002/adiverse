@@ -33,6 +33,7 @@ export type Dictionary = {
   problemLabel: string;
   resultLabel: string;
   visit: string;
+  code: string;
   soon: string;
   nextTitle: string;
   nextText: string;
@@ -94,6 +95,7 @@ export const dictionary: Record<Lang, Dictionary> = {
     problemLabel: "Problem",
     resultLabel: "Result",
     visit: "Visit live site ↗",
+    code: "Code on GitHub ↗",
     soon: "Link coming soon",
     nextTitle: "Your shop could be next.",
     nextText: "Tell me what you sell and where. I'll reply with a free quote within 24 hours.",
@@ -154,6 +156,7 @@ export const dictionary: Record<Lang, Dictionary> = {
     problemLabel: "समस्या",
     resultLabel: "नतीजा",
     visit: "लाइव साइट देखें ↗",
+    code: "GitHub पर कोड ↗",
     soon: "लिंक जल्द आ रहा है",
     nextTitle: "अगली दुकान आपकी हो सकती है।",
     nextText: "बताइए आप क्या बेचते हैं और कहाँ। 24 घंटे में फ्री कोट मिलेगा।",

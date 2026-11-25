@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useLang } from "@/components/providers/language-provider";
-import { ShopScene } from "@/components/sections/shop-scene";
+import { ProjectArt } from "@/components/sections/project-art";
 import { work } from "@/data/work";
 
 const ACCENT = {
@@ -30,7 +30,6 @@ export function Work() {
 
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {work.map((w, i) => {
-            const isLive = w.liveUrl && w.liveUrl !== "#";
             return (
               <motion.article
                 key={w.slug}
@@ -53,7 +52,7 @@ export function Work() {
                     />
                   ) : (
                     <div className="transition-transform duration-500 group-hover:scale-[1.03]">
-                      <ShopScene state="after" />
+                      <ProjectArt variant={w.art ?? "app"} name={w.name.en} />
                     </div>
                   )}
                   <span
@@ -78,8 +77,19 @@ export function Work() {
                     </div>
                   </dl>
 
-                  <div className="mt-auto pt-5">
-                    {isLive ? (
+                  <ul className="mt-4 flex flex-wrap gap-1.5">
+                    {w.stack.map((s) => (
+                      <li
+                        key={s}
+                        className="rounded-full border-2 border-ink bg-cream px-2.5 py-0.5 text-xs font-bold"
+                      >
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto flex flex-wrap items-center gap-3 pt-5">
+                    {w.liveUrl ? (
                       <a
                         href={w.liveUrl}
                         target="_blank"
@@ -92,6 +102,16 @@ export function Work() {
                       <span className="inline-block rounded-full border-[3px] border-dashed border-ink/40 px-4 py-2 text-sm font-bold opacity-60">
                         {t.soon}
                       </span>
+                    )}
+                    {w.githubUrl && (
+                      <a
+                        href={w.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-extrabold underline underline-offset-4"
+                      >
+                        {t.code}
+                      </a>
                     )}
                   </div>
                 </div>

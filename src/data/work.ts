@@ -6,56 +6,65 @@ export type WorkItem = {
   type: Localized;
   problem: Localized;
   result: Localized;
-  liveUrl: string; // "#" or "" means "link coming soon"
-  image?: string; // e.g. "/work/shop-1.jpg" (put the file in /public/work)
+  stack: string[];
+  liveUrl: string; // "" means no live link yet
+  githubUrl: string;
+  image?: string; // e.g. "/work/yojanagpt.png" (file goes in /public/work)
   accent: "gold" | "leaf" | "chili";
+  art?: "chat" | "app";
 };
 
-// TODO: replace every placeholder below with your real projects.
 export const work: WorkItem[] = [
   {
-    slug: "shop-1",
-    name: { en: "Shop name 1", hi: "दुकान का नाम 1" },
-    type: { en: "Kirana store", hi: "किराना दुकान" },
+    slug: "yojanagpt",
+    name: { en: "YojanaGPT", hi: "योजनाGPT" },
+    type: { en: "AI assistant", hi: "AI असिस्टेंट" },
     problem: {
-      en: "Customers could not find the shop online.",
-      hi: "ग्राहक दुकान को ऑनलाइन नहीं ढूँढ पाते थे।",
+      en: "Thousands of government schemes are scattered across portals, mostly in English, so eligible people never find them.",
+      hi: "हज़ारों सरकारी योजनाएँ अलग-अलग पोर्टल पर बिखरी हैं, ज़्यादातर अंग्रेज़ी में, इसलिए पात्र लोग उन तक पहुँच नहीं पाते।",
     },
     result: {
-      en: "A fast site with products, timings and WhatsApp ordering.",
-      hi: "तेज़ साइट: सामान, टाइमिंग और व्हाट्सऐप ऑर्डर के साथ।",
+      en: "A RAG assistant that answers scheme questions in Indian languages, with eligibility checks, document lists and source links. Open source.",
+      hi: "एक RAG असिस्टेंट जो भारतीय भाषाओं में योजनाओं के जवाब देता है: पात्रता जाँच, दस्तावेज़ सूची और स्रोत लिंक के साथ। ओपन सोर्स।",
     },
-    liveUrl: "#", // ← your live link
+    stack: ["Python", "FastAPI", "ChromaDB", "Llama 3.3 (Groq)", "Docker"],
+    liveUrl: "https://aditya9122002.github.io/yojanagpt/", // verify this works!
+    githubUrl: "https://github.com/Aditya9122002/yojanagpt",
+    accent: "chili",
+    art: "chat",
+  },
+  {
+    slug: "techuncut",
+    name: { en: "TechUncut", hi: "TechUncut" },
+    type: { en: "Web app", hi: "वेब ऐप" },
+    problem: {
+      en: "TODO: one line on what problem TechUncut solves.",
+      hi: "TODO: TechUncut कौन सी समस्या हल करता है, एक लाइन में।",
+    },
+    result: {
+      en: "TODO: one line on what it does today.",
+      hi: "TODO: आज यह क्या करता है, एक लाइन में।",
+    },
+    stack: ["Next.js", "Vercel"],
+    liveUrl: "https://tech-uncut.vercel.app",
+    githubUrl: "https://github.com/Aditya9122002/TechUncut",
     accent: "gold",
   },
   {
-    slug: "shop-2",
-    name: { en: "Shop name 2", hi: "दुकान का नाम 2" },
-    type: { en: "Salon", hi: "सैलून" },
+    slug: "urban-library",
+    name: { en: "Urban Library", hi: "Urban Library" },
+    type: { en: "Project", hi: "प्रोजेक्ट" },
     problem: {
-      en: "Bookings came only by phone calls.",
-      hi: "बुकिंग सिर्फ़ फ़ोन कॉल से आती थी।",
+      en: "TODO: one line on the problem.",
+      hi: "TODO: समस्या, एक लाइन में।",
     },
     result: {
-      en: "An online booking page with services and prices.",
-      hi: "सर्विस और रेट के साथ ऑनलाइन बुकिंग पेज।",
+      en: "TODO: one line on the outcome.",
+      hi: "TODO: नतीजा, एक लाइन में।",
     },
-    liveUrl: "#",
+    stack: ["TODO"],
+    liveUrl: "",
+    githubUrl: "https://github.com/Aditya9122002/Urban-Library",
     accent: "leaf",
-  },
-  {
-    slug: "shop-3",
-    name: { en: "Shop name 3", hi: "दुकान का नाम 3" },
-    type: { en: "Cafe", hi: "कैफ़े" },
-    problem: {
-      en: "The menu lived only on paper.",
-      hi: "मेन्यू सिर्फ़ काग़ज़ पर था।",
-    },
-    result: {
-      en: "A digital menu with a QR code and order button.",
-      hi: "QR कोड और ऑर्डर बटन के साथ डिजिटल मेन्यू।",
-    },
-    liveUrl: "#",
-    accent: "chili",
   },
 ];
