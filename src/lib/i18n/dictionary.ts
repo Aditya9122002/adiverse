@@ -38,6 +38,14 @@ export type Dictionary = {
   nextTitle: string;
   nextText: string;
   nextBtn: string;
+  procLabel: string;
+  procTitleA: string;
+  procTitleB: string;
+  steps: { title: string; text: string }[];
+  faqLabel: string;
+  faqTitleA: string;
+  faqTitleB: string;
+  faq: { q: string; a: string }[];
 };
 
 export const dictionary: Record<Lang, Dictionary> = {
@@ -100,6 +108,27 @@ export const dictionary: Record<Lang, Dictionary> = {
     nextTitle: "Your shop could be next.",
     nextText: "Tell me what you sell and where. I'll reply with a free quote within 24 hours.",
     nextBtn: "Get a free quote →",
+
+    procLabel: "HOW IT WORKS",
+    procTitleA: "Four simple steps, ",
+    procTitleB: "no tech talk.",
+    steps: [
+      { title: "Tell me", text: "Share what you do and what you need, by WhatsApp, email or the quote form." },
+      { title: "Get a quote", text: "I reply with a clear plan and price before any work starts." },
+      { title: "I build", text: "You see progress along the way and tell me what to change." },
+      { title: "Launch and handover", text: "Your project goes live, and I show you how to use it. You own everything." },
+    ],
+    faqLabel: "FAQ",
+    faqTitleA: "Questions people ",
+    faqTitleB: "ask me.",
+    faq: [
+      { q: "Who do you work with?", a: "Shops, startups, creators and small teams. If you have an idea or a business that needs a website, a chatbot or some automation, we can talk." },
+      { q: "How much does it cost?", a: "It depends on what you need. Tell me about your project and I'll send a clear quote before we start." },
+      { q: "How long does it take?", a: "Small sites can be ready within days. Bigger projects take longer. I'll give you a timeline in the quote." },
+      { q: "Do I need to know anything technical?", a: "No. I explain everything in plain words, in English or Hindi, and show you how to use what I build." },
+      { q: "Who owns the website or chatbot?", a: "You do. Domain, code and accounts are set up in your name." },
+      { q: "Can you build something with AI for my business?", a: "Yes. For example, a chatbot that answers customer questions or takes orders on WhatsApp. I can also build custom AI tools for your team." },
+    ],
   },
   hi: {
     navServices: "सेवाएँ",
@@ -161,6 +190,27 @@ export const dictionary: Record<Lang, Dictionary> = {
     nextTitle: "अगली दुकान आपकी हो सकती है।",
     nextText: "बताइए आप क्या बेचते हैं और कहाँ। 24 घंटे में फ्री कोट मिलेगा।",
     nextBtn: "फ्री कोट पाएँ →",
+
+    procLabel: "कैसे होता है",
+    procTitleA: "चार आसान कदम, ",
+    procTitleB: "बिना टेक की भाषा के।",
+    steps: [
+      { title: "मुझे बताइए", text: "आप क्या करते हैं और क्या चाहिए, व्हाट्सऐप, ईमेल या कोट फ़ॉर्म से बताइए।" },
+      { title: "कोट पाइए", text: "काम शुरू होने से पहले मैं साफ़ प्लान और रेट बताता हूँ।" },
+      { title: "मैं बनाता हूँ", text: "आप बीच-बीच में प्रगति देखते हैं और बदलाव बताते हैं।" },
+      { title: "लॉन्च और हैंडओवर", text: "आपका प्रोजेक्ट लाइव होता है और मैं चलाना सिखाता हूँ। सब कुछ आपका अपना।" },
+    ],
+    faqLabel: "सवाल-जवाब",
+    faqTitleA: "लोग मुझसे ",
+    faqTitleB: "ये पूछते हैं।",
+    faq: [
+      { q: "आप किनके साथ काम करते हैं?", a: "दुकानों, स्टार्टअप, क्रिएटर और छोटी टीमों के साथ। अगर आपके पास आइडिया या बिज़नेस है जिसे वेबसाइट, चैटबॉट या ऑटोमेशन चाहिए, तो बात करते हैं।" },
+      { q: "खर्चा कितना आता है?", a: "यह आपकी ज़रूरत पर निर्भर है। अपने प्रोजेक्ट के बारे में बताइए, काम शुरू होने से पहले मैं साफ़ कोट भेज दूँगा।" },
+      { q: "कितना समय लगता है?", a: "छोटी साइट कुछ दिनों में तैयार हो सकती है। बड़े प्रोजेक्ट में ज़्यादा समय लगता है। कोट में मैं टाइमलाइन बता दूँगा।" },
+      { q: "क्या मुझे टेक्निकल जानकारी चाहिए?", a: "नहीं। मैं सब कुछ आसान भाषा में, हिंदी या अंग्रेज़ी में समझाता हूँ और चलाना भी सिखाता हूँ।" },
+      { q: "वेबसाइट या चैटबॉट का मालिक कौन होगा?", a: "आप। डोमेन, कोड और अकाउंट आपके नाम पर बनते हैं।" },
+      { q: "क्या आप मेरे बिज़नेस के लिए AI बना सकते हैं?", a: "हाँ। जैसे ऐसा चैटबॉट जो ग्राहकों के सवालों के जवाब दे या व्हाट्सऐप पर ऑर्डर ले। टीम के लिए कस्टम AI टूल भी बना सकता हूँ।" },
+    ],
 
     
     

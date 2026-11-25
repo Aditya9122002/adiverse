@@ -3,6 +3,8 @@ import { Hero } from "@/components/sections/hero";
 import { Marquee } from "@/components/sections/marquee";
 import { Services } from "@/components/sections/services";
 import { Work } from "@/components/sections/work";
+import { Process } from "@/components/sections/process";
+import { Faq } from "@/components/sections/faq";
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
         <Marquee />
         <Services />
         <Work />
+        <Process />
+        <Faq />
       </main>
     </>
   );
