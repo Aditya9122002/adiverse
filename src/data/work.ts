@@ -12,6 +12,7 @@ export type WorkItem = {
   image?: string; // e.g. "/work/yojanagpt.png" (file goes in /public/work)
   accent: "gold" | "leaf" | "chili";
   art?: "chat" | "app";
+  metrics?: { value: number; label: Localized }[];
 };
 
 export const work: WorkItem[] = [
@@ -32,6 +33,11 @@ export const work: WorkItem[] = [
     githubUrl: "https://github.com/Aditya9122002/yojanagpt",
     accent: "chili",
     art: "chat",
+    metrics: [
+      { value: 22, label: { en: "languages", hi: "भाषाएँ" } },
+      { value: 4357, label: { en: "schemes indexed", hi: "योजनाएँ" } },
+      { value: 69, label: { en: "automated tests", hi: "ऑटोमेटेड टेस्ट" } },
+    ],
   },
   {
     slug: "techuncut",

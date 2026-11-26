@@ -331,3 +331,64 @@ h1, h2, h3 {
     animation: none;
   }
 }
+
+/* ===== Project launch cards ===== */
+.launch,
+.launch-zoom,
+.launch-sticker,
+.gh-link,
+.reveal-on-hover {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Mouse devices only: touch screens skip all of this */
+@media (hover: hover) and (pointer: fine) {
+  .launch:hover {
+    transform: translateY(-6px);
+    box-shadow: 9px 9px 0 var(--ink);
+  }
+  .launch:hover .launch-zoom {
+    transform: scale(1.04);
+  }
+  .launch:hover .launch-sticker {
+    transform: rotate(-7deg) scale(1.05);
+  }
+  .launch:hover .gh-link {
+    transform: translateX(5px);
+  }
+
+  /* Stack is hidden until hover or keyboard focus (always visible on touch) */
+  .reveal-on-hover {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .launch:hover .reveal-on-hover,
+  .launch:focus-within .reveal-on-hover {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Warm glow ring, not neon */
+.brut-btn.glow:hover {
+  box-shadow: 6px 6px 0 var(--ink),
+    0 0 0 7px color-mix(in srgb, var(--gold) 40%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .launch,
+  .launch-zoom,
+  .launch-sticker,
+  .gh-link,
+  .reveal-on-hover {
+    transition: none;
+  }
+  .launch:hover,
+  .launch:hover .launch-zoom,
+  .launch:hover .launch-sticker,
+  .launch:hover .gh-link {
+    transform: none;
+  }
+}
