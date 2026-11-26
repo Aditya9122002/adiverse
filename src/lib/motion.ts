@@ -19,3 +19,4 @@ export const TIMELINE = {
 export const IDLE = { floatPx: 4, breathe: 1.012, seconds: 6 } as const;
 export const TILT_DEG = 1.5;
 export const PARALLAX = { portrait: 6, chips: 14, card: 10 } as const;
+export const NAV = { slide: 0.7, logoDelay: 0.25, logoDraw: 0.9 } as const;
