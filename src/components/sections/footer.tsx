@@ -2,6 +2,7 @@
 
 import { useLang } from "@/components/providers/language-provider";
 import { site, hasWhatsapp, hasEmail } from "@/data/site";
+import { CurrentYear } from "@/components/shared/current-year";
 
 export function Footer() {
   const { t } = useLang();
@@ -85,7 +86,7 @@ export function Footer() {
         </div>
 
         <p className="mt-10 border-t border-cream/20 pt-6 text-sm opacity-70">
-          © {new Date().getFullYear()} {site.name}. {t.footerRights} Made in India.
+          © <CurrentYear /> {site.name}. {t.footerRights} Made in India.
         </p>
       </div>
     </footer>
